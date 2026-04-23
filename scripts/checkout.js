@@ -110,6 +110,6 @@ document.querySelectorAll('.js-delete-link').forEach((link) => {
         container.remove();
 
 
-        console.log(container);
+        console.log(productId);
     })
 });
