@@ -1,4 +1,4 @@
-import {cart, removeFromCart} from '../data/cart.js';
+import {cart, removeFromCart, updateDeliveryOption} from '../data/cart.js';
 import { products } from '../data/products.js';
 import formatCurrency from './utils/money.js';
 import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js'; 
@@ -33,7 +33,7 @@ cart.forEach((cartItem) => {
             matchingProduct = product;
         }
     });
-
+    console.log('getting the delivery date using the deliveryOptionId value of cartItem');
     const deliveryOptionId = cartItem.deliveryOptionId;
 
     let deliveryOption;
@@ -112,7 +112,9 @@ function deliveryOptionsHTML (matchingProduct, cartItem) {
         : `$${formatCurrency(deliveryOption.priceCents)} -`
         const isChecked = deliveryOption.id === cartItem.deliveryOptionId;
         html += `
-            <div class="delivery-option">
+            <div class="delivery-option js-delivery-option" 
+            data-product-id="${matchingProduct.id}"
+            data-delivery-option-id="${deliveryOption.id}">
                 <input type="radio" 
                 ${isChecked ? 'checked' : ''}
                 class="delivery-option-input"
@@ -154,5 +156,14 @@ document.querySelectorAll('.js-delete-link').forEach((link) => {
 
     })
 });
+
+document.querySelectorAll('.js-delivery-option').forEach((element) => {
+    element.addEventListener('click', () => {
+        console.log('the delivery date option is changed.'); 
+        const {productId, deliveryOptionId} = element.dataset;
+        updateDeliveryOption(productId, deliveryOptionId);
+    });
+});
+
 
 hello();

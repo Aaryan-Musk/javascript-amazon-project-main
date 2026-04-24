@@ -60,3 +60,20 @@ export function addToCart(productId) {
     console.log('Leaving addToCart function');
     
 }
+
+export function updateDeliveryOption(productId, deliveryOptionId) {
+    console.log("entering updateDeliveryOption function.");
+
+    let matchingItem;
+
+    cart.forEach((CartItem) => {
+        if(productId === CartItem.productId){
+            matchingItem = CartItem;
+        }
+    });
+
+    matchingItem.deliveryOptionId = deliveryOptionId;
+    saveToStorage();
+    location.reload();
+}
+
