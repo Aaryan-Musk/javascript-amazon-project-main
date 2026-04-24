@@ -136,7 +136,7 @@ export function renderOrderSummary () {
             const container = document.querySelector(`.js-cart-item-container-${productId}`);
 
             container.remove();
-
+            renderPaymentSummary();
 
         })
     });
@@ -146,12 +146,12 @@ export function renderOrderSummary () {
             console.log('the delivery date option is changed.'); 
             const {productId, deliveryOptionId} = element.dataset;
             updateDeliveryOption(productId, deliveryOptionId);
+            renderPaymentSummary();
             renderOrderSummary();
         });
     });
 
 
-    hello();
 }
 
 renderOrderSummary();
