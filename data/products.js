@@ -1,3 +1,24 @@
+export function getProduct(productId){
+
+  let matchingProduct;
+
+  console.log('Iterating through the cart');
+
+  products.forEach((product) => {
+
+      console.log('Iterating through the Products file which has all the products');
+
+      if(productId === product.id) {
+
+          console.log('checking, is the product id in cart is matching the product id in Products file so that we can display the information about that selected product in cart to the user on the checkout page');
+
+          matchingProduct = product;
+      }
+  });
+
+  return matchingProduct;
+}
+
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
