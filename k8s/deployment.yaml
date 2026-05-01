@@ -19,5 +19,6 @@ spec:
       containers:
         - name: amazon-clone
           image: amazon-clone
+          imagePullPolicy: Never
           ports:
             - containerPort: 80
