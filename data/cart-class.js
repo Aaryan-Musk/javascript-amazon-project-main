@@ -1,17 +1,18 @@
 class Cart {
     cartItems;
-    localStorageKey;
+    #localStorageKey;
+    // # means that this property is private
 
     constructor(localStorageKey) {
-        this.localStorageKey = localStorageKey;
+        this.#localStorageKey = localStorageKey;
 
-        this.loadFromStorage();
+        this.#loadFromStorage();
 
         // never return form constructor
     }
 
-    loadFromStorage() {
-        this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey));
+    #loadFromStorage() {
+        this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey));
         // if(!cart) {
         //     cart = [];
         // }
@@ -29,15 +30,15 @@ class Cart {
     }
 
     saveToStorage () {
-        console.log('Entering SaveToStorage method...');
+        //console.log('Entering SaveToStorage method...');
 
-        localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
+        localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
 
-        console.log('Leaving SaveToStorage method');
+        //console.log('Leaving SaveToStorage method');
     }
 
     addToCart(productId) {
-        console.log('Entering addToCart method...');
+        //console.log('Entering addToCart method...');
 
         let matchingItem;
 
@@ -57,12 +58,12 @@ class Cart {
             });
         }
         this.saveToStorage();
-        console.log('Leaving addToCart method');
+        //console.log('Leaving addToCart method');
         
     }
 
     removeFromCart(productId) {
-        console.log('entering the removeFromCart method');
+        //console.log('entering the removeFromCart method');
 
         const newCart = [];
 
@@ -74,11 +75,11 @@ class Cart {
 
         this.cartItems = newCart;
         this.saveToStorage();
-        console.log('Leaving removeFromCart method');
+        //console.log('Leaving removeFromCart method');
     }
 
     updateDeliveryOption(productId, deliveryOptionId) {
-        console.log("entering updateDeliveryOption function.");
+        //console.log("entering updateDeliveryOption function.");
 
         let matchingItem;
 
@@ -97,7 +98,6 @@ class Cart {
 
 const cart = new Cart('cart-oop');
 const businessCart = new Cart('cart-business');
-
 
 
 console.log(cart);
