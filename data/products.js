@@ -1,3 +1,5 @@
+// converting an object into a class
+import {formatCurrency} from '../scripts/utils/money.js'
 export function getProduct(productId){
 
   let matchingProduct;
@@ -17,6 +19,32 @@ export function getProduct(productId){
   });
 
   return matchingProduct;
+}
+
+class Product {
+  id;
+  image;
+  name;
+  rating;
+  priceCents;
+  constructor(ProductDetails) {
+    this.id = ProductDetails.id;
+    this.name = ProductDetails.name;
+    this.image = ProductDetails.image;
+    this.rating = ProductDetails.rating;
+    this.priceCents = ProductDetails.priceCents
+  }
+
+  getStarsUrl() {
+    return `images/ratings/rating-${this.rating.stars * 10}.png`;
+  }
+
+  getPrice() {
+    return `$${formatCurrency(this.priceCents)}`;
+  }
+
+
+
 }
 
 export const products = [
@@ -678,4 +706,6 @@ export const products = [
       "mens"
     ]
   }
-];
+].map((ProductDetails) => {
+  return new Product(ProductDetails);
+});
