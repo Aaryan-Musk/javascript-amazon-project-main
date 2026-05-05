@@ -8,6 +8,25 @@ import { loadCart } from "../data/cart.js";
 
 // promises keep our code more flat and easy to read and understand
 
+async function loadPage() {
+
+    await loadProductsFetch();
+    // async await works only on promises
+    const value = await new Promise((resolve) => {
+        loadCart(() => {
+            resolve('value3');
+        });
+    });
+    
+    renderOrderSummary();
+    renderPaymentSummary();    
+
+
+}
+
+loadPage();
+
+/*
 Promise.all([
 
     loadProductsFetch(),
@@ -17,12 +36,14 @@ Promise.all([
             resolve();
         });
     }),
-    
+
 ]).then((values) => {
     console.log(values);
     renderOrderSummary();
     renderPaymentSummary();    
 });
+
+*/
 
 // new Promise((resolve) => {
 
