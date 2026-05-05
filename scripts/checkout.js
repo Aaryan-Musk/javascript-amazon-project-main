@@ -9,14 +9,19 @@ import { loadCart } from "../data/cart.js";
 // promises keep our code more flat and easy to read and understand
 
 async function loadPage() {
-
-    await loadProductsFetch();
-    // async await works only on promises
-    const value = await new Promise((resolve) => {
-        loadCart(() => {
-            resolve('value3');
+    try{
+        //throw 'error1';
+        await loadProductsFetch();
+        // async await works only on promises
+        const value = await new Promise((resolve, reject) => {
+            loadCart(() => {
+                // reject('error3');
+                resolve('value3');
+            });
         });
-    });
+    } catch (error) {
+        console.log('Unexpected error. Please try again later inside cheackout.js', error);
+    }
     
     renderOrderSummary();
     renderPaymentSummary();    
