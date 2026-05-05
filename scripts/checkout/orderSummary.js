@@ -76,17 +76,17 @@ export function renderOrderSummary () {
 
     function deliveryOptionsHTML (matchingProduct, cartItem) {
 
-        console.log('inside DeliveryOptionsHTML func to get HTML of delivery-options HTML tag')
+        // console.log('inside DeliveryOptionsHTML func to get HTML of delivery-options HTML tag')
 
-        console.log("getting delivery options from its FILE. ")
+        // console.log("getting delivery options from its FILE. ")
 
         let html = '';
 
         deliveryOptions.forEach((deliveryOption) => {
 
-            console.log('checking for each delivery option type out of 3 for the cartItem that has been passed into the function');
+            // console.log('checking for each delivery option type out of 3 for the cartItem that has been passed into the function');
 
-            console.log('creating HTML based on the deliveryOptions and CartItem arrays.')
+            // console.log('creating HTML based on the deliveryOptions and CartItem arrays.')
         
             const today = dayjs();
             const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
@@ -125,13 +125,13 @@ export function renderOrderSummary () {
 
             const productId = link.dataset.productId;
 
-            console.log('Clicked delete button for product: ' + productId);
+            // console.log('Clicked delete button for product: ' + productId);
 
-            console.log('called removeFromCart function...')
+            // console.log('called removeFromCart function...')
             removeFromCart(productId);
             
-            console.log('came back from removeFromCart function.')
-            console.log('removing the selected cartItem HTML from the cartSummaryHTML');
+            // console.log('came back from removeFromCart function.')
+            // console.log('removing the selected cartItem HTML from the cartSummaryHTML');
 
             const container = document.querySelector(`.js-cart-item-container-${productId}`);
 
@@ -143,7 +143,7 @@ export function renderOrderSummary () {
 
     document.querySelectorAll('.js-delivery-option').forEach((element) => {
         element.addEventListener('click', () => {
-            console.log('the delivery date option is changed.'); 
+            // console.log('the delivery date option is changed.'); 
             const {productId, deliveryOptionId} = element.dataset;
             updateDeliveryOption(productId, deliveryOptionId);
             renderPaymentSummary();
